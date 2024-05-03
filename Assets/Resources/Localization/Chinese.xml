@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Localization>
+    <Entry>
+        <Key>Title</Key>
+        <Value>不知所措</Value>
+    </Entry>
+    <Entry>
+        <Key>Start</Key>
+        <Key>开冲！</Key>
+    </Entry>
+    <Entry>
+        <Key>Quit</Key>
+        <Key>润了</Key>
+    </Entry>
+</Localization>

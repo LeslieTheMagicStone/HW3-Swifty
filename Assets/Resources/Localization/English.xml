@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Localization>
+  <Entry>
+    <Key>Title</Key>
+    <Value>SWIFTY</Value>
+  </Entry>
+  <Entry>
+    <Key>Start</Key>
+    <Key>Start</Key>
+  </Entry>
+  <Entry>
+    <Key>Quit</Key>
+    <Key>...or Quit</Key>
+  </Entry>
+</Localization>

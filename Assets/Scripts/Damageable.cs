@@ -10,6 +10,7 @@ public class Damageable : MonoBehaviour
     public UnityEvent OnHurt;
     [SerializeField] int _maxHealth;
     [SerializeField] Side _side;
+    [SerializeField] GameObject deathParticles;
     int _health;
     private Vector3 origPos;
     private Tween shakeTween;
@@ -41,6 +42,11 @@ public class Damageable : MonoBehaviour
         OnHurt.Invoke();
         if (_health <= 0)
         {
+            if (deathParticles != null)
+            {
+                deathParticles.SetActive(true);
+                deathParticles.transform.SetParent(null);
+            }
             Destroy(gameObject);
             return;
         }

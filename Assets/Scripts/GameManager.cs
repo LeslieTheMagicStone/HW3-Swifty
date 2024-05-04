@@ -3,10 +3,11 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager Instance => instance;
-    private GameManager instance;
+    public static GameManager Instance => instance;
+    private static GameManager instance;
 
-    public UnityEvent<string> OnKeyDown;
+    public bool debugMode => _debugMode;
+    [SerializeField] bool _debugMode;
 
     private void Awake()
     {
@@ -16,6 +17,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 }

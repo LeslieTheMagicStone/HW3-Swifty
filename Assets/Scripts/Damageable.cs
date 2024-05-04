@@ -1,16 +1,26 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
     public Side side => _side;
-    [SerializeField] int health;
+    public int maxHealth => _maxHealth;
+    public int health => _health;
+    public UnityEvent OnHurt;
+    [SerializeField] int _maxHealth;
     [SerializeField] Side _side;
+    int _health;
     private Vector3 origPos;
     private Tween shakeTween;
     private bool isInvincible => invincibleTimer > 0;
     private float invincibleTimer;
-    const float INVINCIBLE_TIME = 0.1f;
+    const float INVINCIBLE_TIME = 0.2f;
+
+    private void Awake()
+    {
+        _health = _maxHealth;
+    }
 
     private void Start()
     {
@@ -25,9 +35,11 @@ public class Damageable : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (isInvincible) return;
-        health -= damage;
+        _health -= damage;
+        _health = Mathf.Max(0, _health);
         invincibleTimer = INVINCIBLE_TIME;
-        if (health <= 0)
+        OnHurt.Invoke();
+        if (_health <= 0)
         {
             Destroy(gameObject);
             return;

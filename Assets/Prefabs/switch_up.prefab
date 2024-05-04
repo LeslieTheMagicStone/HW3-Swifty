@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d5b73bcd98ba14994c8af0932ed533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetInput: w
+  targetInput: up

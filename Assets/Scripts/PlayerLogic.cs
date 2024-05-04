@@ -22,6 +22,9 @@ public class PlayerLogic : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        animator.SetFloat("HorizontalInput", horizontalInput);
+        animator.SetFloat("VerticalInput", verticalInput);
+
         animator.SetBool("OnLeft", Input.GetKey(KeyCode.LeftArrow));
         animator.SetBool("OnRight", Input.GetKey(KeyCode.RightArrow));
         animator.SetBool("OnDown", Input.GetKey(KeyCode.DownArrow));

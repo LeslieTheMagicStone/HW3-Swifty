@@ -56,6 +56,7 @@ public class Damageable : MonoBehaviour
 
     private void OnDestroy()
     {
-        DOTween.Kill(shakeTween);
+        if (shakeTween != null)
+            DOTween.Kill(shakeTween);
     }
 }

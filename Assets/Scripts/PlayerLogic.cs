@@ -5,6 +5,7 @@ public class PlayerLogic : MonoBehaviour
     Animator animator;
     CharacterController characterController;
     float horizontalInput, verticalInput;
+    float horizontalInputRaw, verticalInputRaw;
     Vector3 movement;
     Vector3 rotation;
 
@@ -22,6 +23,9 @@ public class PlayerLogic : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        horizontalInputRaw = Input.GetAxisRaw("Horizontal");
+        verticalInputRaw = Input.GetAxisRaw("Vertical");
+
         animator.SetFloat("HorizontalInput", horizontalInput);
         animator.SetFloat("VerticalInput", verticalInput);
 
@@ -33,9 +37,17 @@ public class PlayerLogic : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rotation.y = horizontalInput * ANGULAR_SPEED * Time.fixedDeltaTime;
-        transform.Rotate(rotation);
-        movement = transform.forward * verticalInput * SPEED * Time.fixedDeltaTime;
+        var groundMovement = new Vector3(horizontalInput, 0, verticalInput).normalized * SPEED * Time.deltaTime;
+        groundMovement.x *= Mathf.Abs(horizontalInput);
+        groundMovement.z *= Mathf.Abs(verticalInput);
+        movement.x = groundMovement.x;
+        movement.z = groundMovement.z;
         characterController.Move(movement);
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.BeginArea(new(0, 0, 200, 200));
+        GUILayout.TextArea(movement.ToString());
     }
 }

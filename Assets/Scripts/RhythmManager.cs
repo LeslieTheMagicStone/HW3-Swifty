@@ -8,8 +8,13 @@ public class RhythmManager : MonoBehaviour
 {
     public static RhythmManager Instance => instance;
     private static RhythmManager instance;
-    public int combo;
-    public int totalHit;
+    [HideInInspector] public int combo;
+    [HideInInspector] public int totalHit;
+
+    public const float PERFECT_TIME = 0.2f;
+    public const float GOOD_TIME = 0.4f;
+    public const float BAD_TIME = 0.5f;
+
     [SerializeField] string mapName;
     [SerializeField] TrackLogic[] tracks;
     [SerializeField] TMP_Text hitStatusText;
@@ -24,6 +29,18 @@ public class RhythmManager : MonoBehaviour
         PrepareMap();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            tracks[0].DetectNote();
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            tracks[1].DetectNote();
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            tracks[2].DetectNote();
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            tracks[3].DetectNote();
+    }
+
     public void Hit(HitType hitType)
     {
         combo++;
@@ -32,7 +49,7 @@ public class RhythmManager : MonoBehaviour
         hitStatusText.text = hitType.ToString() + "!!";
         comboText.text = "Combo: " + combo.ToString();
     }
-    
+
     public void Miss()
     {
         combo = 0;
@@ -42,7 +59,7 @@ public class RhythmManager : MonoBehaviour
 
     private void PrepareMap()
     {
-        string filePath = Path.Combine(Application.dataPath, "Maps", mapName);
+        string filePath = Path.Combine(Application.dataPath, "Maps", mapName + ".mp");
         if (File.Exists(filePath))
         {
             string[] line = File.ReadAllLines(filePath);
@@ -57,7 +74,6 @@ public class RhythmManager : MonoBehaviour
                     case 's': tracks[2].SpawnNote(i * 0.5f); break;
                     case 'd': tracks[3].SpawnNote(i * 0.5f); break;
                 }
-                // print($"Do {mapstring[i]} at {i * 0.5f}");
             }
         }
         else

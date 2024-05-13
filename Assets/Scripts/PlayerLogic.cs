@@ -44,10 +44,4 @@ public class PlayerLogic : MonoBehaviour
         movement.z = groundMovement.z;
         characterController.Move(movement);
     }
-
-    private void OnGUI()
-    {
-        GUILayout.BeginArea(new(0, 0, 200, 200));
-        GUILayout.TextArea(movement.ToString());
-    }
 }

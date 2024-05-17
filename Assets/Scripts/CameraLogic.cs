@@ -5,7 +5,7 @@ public class CameraLogic : MonoBehaviour
     Transform player;
 
     const float Y_OFFSET = 8f;
-    const float Z_OFFSET = -2f;
+    const float Z_OFFSET = -5f;
     const float SMOOTH_FACTOR = 2f;
 
     private void Start()

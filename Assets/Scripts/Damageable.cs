@@ -47,6 +47,7 @@ public class Damageable : MonoBehaviour
                 deathParticles.SetActive(true);
                 deathParticles.transform.SetParent(null);
             }
+            transform.DOKill();
             Destroy(gameObject);
             return;
         }

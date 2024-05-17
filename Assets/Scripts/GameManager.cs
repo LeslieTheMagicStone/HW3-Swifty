@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private void Start() {
+    }
+
     private void Update()
     {
 

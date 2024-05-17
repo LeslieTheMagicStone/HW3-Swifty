@@ -3188,6 +3188,7 @@ GameObject:
   - component: {fileID: 1010917830}
   - component: {fileID: 1010917834}
   - component: {fileID: 1010917835}
+  - component: {fileID: 1010917836}
   m_Layer: 0
   m_Name: Hit
   m_TagString: Untagged
@@ -3328,6 +3329,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1010917836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010917829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdfc78019150124bb7bcd14e511ada3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rhythmEach: 0
 --- !u!1 &1086722038
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,6 +4702,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1390715991}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9698462e2dc33b44bb68e8270f142fb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1390715994}
   m_SourcePrefab: {fileID: 100100000, guid: b9698462e2dc33b44bb68e8270f142fb, type: 3}
 --- !u!1 &1390715990 stripped
 GameObject:
@@ -4707,6 +4725,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abff3943ede8cd042a310d0e4cf094d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1390715994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390715990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdfc78019150124bb7bcd14e511ada3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rhythmEach: 0
 --- !u!1 &1399014167
 GameObject:
   m_ObjectHideFlags: 0

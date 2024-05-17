@@ -11,6 +11,9 @@ public class RhythmManager : MonoBehaviour
     [HideInInspector] public int combo;
     [HideInInspector] public int totalHit;
 
+    public float bpm => _bpm;
+    private float _bpm = 60;
+
     public const float PERFECT_TIME = 0.2f;
     public const float GOOD_TIME = 0.4f;
     public const float BAD_TIME = 0.5f;

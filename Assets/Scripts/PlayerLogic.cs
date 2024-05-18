@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 {
+    public Vector3 targetPos => _targetPos;
     [SerializeField] Transform detectionRayOrigin;
     Animator animator;
     CharacterController characterController;
     float horizontalInput, verticalInput;
     float horizontalInputRaw, verticalInputRaw;
-    Vector3 rotation;
-    Vector3 targetPos;
+    Vector3 _targetPos;
     float moveTimer;
     bool isMoving => moveTimer > 0f;
 
     const float MOVE_TIME = 0.2f;
     const float MOVEMENT_DISTANCE = 1f;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
 
-        targetPos = transform.position;
+        _targetPos = transform.position;
         moveTimer = 0f;
     }
 
@@ -52,10 +52,10 @@ public class PlayerLogic : MonoBehaviour
             moveTimer = MOVE_TIME;
             Ray ray = new(detectionRayOrigin.position, direction);
             if (!Physics.Raycast(ray, out RaycastHit hit, MOVEMENT_DISTANCE))
-                targetPos += direction * MOVEMENT_DISTANCE;
+                _targetPos += direction * MOVEMENT_DISTANCE;
         }
 
-        Vector3 nextPos = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10f);
+        Vector3 nextPos = Vector3.Lerp(transform.position, _targetPos, Time.deltaTime * 10f);
         characterController.Move(nextPos - transform.position);
     }
 

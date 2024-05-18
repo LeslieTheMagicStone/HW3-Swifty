@@ -5,6 +5,8 @@ public class TrackLogic : MonoBehaviour
 {
     [SerializeField] NoteBulletLogic notePrefab;
     Queue<NoteBulletLogic> notesOnTrack;
+    PlayerLogic player;
+    Vector3 offset;
     const float SPAWN_DISTANCE = 4f;
     const float NOTE_VELOCITY = 4f;
 
@@ -13,9 +15,17 @@ public class TrackLogic : MonoBehaviour
         notesOnTrack = new();
     }
 
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerLogic>();
+        offset = transform.position - player.transform.position;
+    }
+
     private void Update()
     {
         CheckMiss();
+        if(player== null) return;
+        transform.position = player.transform.position + offset;
     }
 
     public void SpawnNote(float delay)

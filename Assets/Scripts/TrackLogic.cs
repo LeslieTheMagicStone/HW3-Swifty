@@ -24,7 +24,7 @@ public class TrackLogic : MonoBehaviour
     private void Update()
     {
         CheckMiss();
-        if(player== null) return;
+        if (player == null) return;
         transform.position = player.transform.position + offset;
     }
 
@@ -49,6 +49,13 @@ public class TrackLogic : MonoBehaviour
         Destroy(note.gameObject);
     }
 
+    private void ReverseNote(HitType hitType)
+    {
+        if (notesOnTrack.Count == 0) return;
+        NoteBulletLogic note = notesOnTrack.Dequeue();
+        note.Reverse(hitType);
+    }
+
     public void DetectNote()
     {
         if (notesOnTrack.Count == 0) return;
@@ -59,17 +66,17 @@ public class TrackLogic : MonoBehaviour
         if (Mathf.Abs(dt) < RhythmManager.PERFECT_TIME)
         {
             RhythmManager.Instance.Hit(HitType.Perfect);
-            DestroyNote();
+            ReverseNote(HitType.Perfect);
         }
         else if (Mathf.Abs(dt) < RhythmManager.GOOD_TIME)
         {
             RhythmManager.Instance.Hit(HitType.Good);
-            DestroyNote();
+            ReverseNote(HitType.Good);
         }
         else if (Mathf.Abs(dt) < RhythmManager.BAD_TIME)
         {
             RhythmManager.Instance.Hit(HitType.Bad);
-            DestroyNote();
+            ReverseNote(HitType.Bad);
         }
     }
 

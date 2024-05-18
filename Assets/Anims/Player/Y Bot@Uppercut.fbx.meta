@@ -36,7 +36,7 @@ ModelImporter:
       name: Uppercut
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 18
+      firstFrame: 27
       lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
@@ -57,7 +57,7 @@ ModelImporter:
       bodyMask: 01000000010000000000000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.054676253
+      - time: 0
         functionName: ShowLeftHand
         data: 
         objectReferenceParameter: {instanceID: 0}

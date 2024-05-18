@@ -37,10 +37,10 @@ public class PlayerLogic : MonoBehaviour
         animator.SetFloat("HorizontalInput", horizontalInput);
         animator.SetFloat("VerticalInput", verticalInput);
 
-        animator.SetBool("OnLeft", Input.GetKey(KeyCode.LeftArrow));
-        animator.SetBool("OnRight", Input.GetKey(KeyCode.RightArrow));
-        animator.SetBool("OnDown", Input.GetKey(KeyCode.DownArrow));
-        animator.SetBool("OnUp", Input.GetKey(KeyCode.UpArrow));
+        animator.SetBool("OnLeft", Input.GetKeyDown(KeyCode.LeftArrow));
+        animator.SetBool("OnRight", Input.GetKeyDown(KeyCode.RightArrow));
+        animator.SetBool("OnDown", Input.GetKeyDown(KeyCode.DownArrow));
+        animator.SetBool("OnUp", Input.GetKeyDown(KeyCode.UpArrow));
 
         Vector3 direction = Vector3.zero;
         if (Input.GetButtonDown("Movement Left")) direction = Vector3.left;

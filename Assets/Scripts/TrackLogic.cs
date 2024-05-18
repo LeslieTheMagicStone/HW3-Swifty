@@ -23,6 +23,7 @@ public class TrackLogic : MonoBehaviour
 
     private void Update()
     {
+        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         CheckMiss();
         if (player == null) return;
         transform.position = player.transform.position + offset;
@@ -44,6 +45,7 @@ public class TrackLogic : MonoBehaviour
 
     public void DestroyNote()
     {
+        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Dequeue();
         Destroy(note.gameObject);
@@ -51,6 +53,7 @@ public class TrackLogic : MonoBehaviour
 
     private void ReverseNote(HitType hitType)
     {
+        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Dequeue();
         note.Reverse(hitType);
@@ -58,6 +61,7 @@ public class TrackLogic : MonoBehaviour
 
     public void DetectNote()
     {
+        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Peek();
         Vector3 distance = note.transform.position - transform.position;
@@ -82,6 +86,7 @@ public class TrackLogic : MonoBehaviour
 
     void CheckMiss()
     {
+        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Peek();
         Vector3 distance = note.transform.position - transform.position;

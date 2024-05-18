@@ -19,6 +19,7 @@ public class PlayerLogic : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        characterController.enabled = false;
 
         _targetPos = transform.position;
         moveTimer = 0f;
@@ -56,7 +57,8 @@ public class PlayerLogic : MonoBehaviour
         }
 
         Vector3 nextPos = Vector3.Lerp(transform.position, _targetPos, Time.deltaTime * 10f);
-        characterController.Move(nextPos - transform.position);
+        // characterController.Move(nextPos - transform.position);
+        transform.position = nextPos;
     }
 
 

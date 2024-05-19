@@ -3,6 +3,8 @@ using DG.Tweening;
 
 public enum RhythmEach
 {
+    FourNotes,
+    TwoNotes,
     Note,
     HalfNote,
     QuarterNote
@@ -24,7 +26,7 @@ public class RhythmicObject : MonoBehaviour
     private void Start()
     {
         float bpm = RhythmManager.Instance.bpm;
-        float T = 60 / bpm * Mathf.Pow(2, -(int)rhythmEach);
+        float T = 60 / bpm * Mathf.Pow(2, -(int)rhythmEach + 2);
         sequence = DOTween.Sequence();
         switch (rhythmAnimType)
         {

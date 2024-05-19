@@ -1,2 +1,2 @@
-120
-wad wad wad wad
+180
+ ww ww ww ww

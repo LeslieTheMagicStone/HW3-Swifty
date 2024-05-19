@@ -11,8 +11,9 @@ public class TrackLogic : MonoBehaviour
     Vector3 offset;
     Vector3 targetPos;
     Sequence blinkSequence;
+    private float noteDelay => RhythmManager.Instance.Tnote * 4;
+    private float noteSpeed => SPAWN_DISTANCE / noteDelay;
     const float SPAWN_DISTANCE = 4f;
-    const float NOTE_VELOCITY = 4f;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class TrackLogic : MonoBehaviour
         NoteBulletLogic note = Instantiate(notePrefab, transform);
         note.transform.position = transform.position + transform.forward * SPAWN_DISTANCE;
         note.transform.rotation = Quaternion.Euler(0, 180, 0) * transform.rotation;
-        note.Init(NOTE_VELOCITY);
+        note.Init(noteSpeed);
         notesOnTrack.Enqueue(note);
     }
 
@@ -79,7 +80,7 @@ public class TrackLogic : MonoBehaviour
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Peek();
         Vector3 distance = note.transform.position - transform.position;
-        float dt = Vector3.Dot(distance, note.transform.forward) / NOTE_VELOCITY;
+        float dt = Vector3.Dot(distance, note.transform.forward) / noteSpeed;
 
         if (Mathf.Abs(dt) < RhythmManager.PERFECT_TIME)
         {
@@ -104,7 +105,7 @@ public class TrackLogic : MonoBehaviour
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Peek();
         Vector3 distance = note.transform.position - transform.position;
-        float dt = Vector3.Dot(distance, note.transform.forward) / NOTE_VELOCITY;
+        float dt = Vector3.Dot(distance, note.transform.forward) / noteSpeed;
 
         if (dt > RhythmManager.BAD_TIME)
         {

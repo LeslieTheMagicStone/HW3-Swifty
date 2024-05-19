@@ -13,6 +13,7 @@ public class RhythmManager : MonoBehaviour
 
     public float bpm => _bpm;
     private float _bpm = 60;
+    public float Tnote => 60f / _bpm;
 
     public const float PERFECT_TIME = 0.2f;
     public const float GOOD_TIME = 0.4f;
@@ -68,16 +69,16 @@ public class RhythmManager : MonoBehaviour
             string[] lines = File.ReadAllLines(filePath);
             string[] configs = lines[0].Split(' ');
             _bpm = int.Parse(configs[0]);
-            string mapstring = lines[1];
+            string mapstring = string.Concat(lines[1..]);
             for (int i = 0; i < mapstring.Length; i++)
             {
                 if (mapstring[i] == ' ') continue;
                 switch (mapstring[i])
                 {
-                    case 'w': tracks[0].SpawnNote(i * 0.5f); break;
-                    case 'a': tracks[1].SpawnNote(i * 0.5f); break;
-                    // case 's': tracks[2].SpawnNote(i * 0.5f); break;
-                    case 'd': tracks[3].SpawnNote(i * 0.5f); break;
+                    case 'w': tracks[0].SpawnNote(i * Tnote); break;
+                    case 'a': tracks[1].SpawnNote(i * Tnote); break;
+                    // case 's': tracks[2].SpawnNote(i * Tnote); break;
+                    case 'd': tracks[3].SpawnNote(i * Tnote); break;
                 }
             }
         }

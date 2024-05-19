@@ -2766,7 +2766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdfc78019150124bb7bcd14e511ada3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rhythmEach: 0
+  rhythmEach: 2
   rhythmAnimType: 0
   blinkTargetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &4030088010836436137

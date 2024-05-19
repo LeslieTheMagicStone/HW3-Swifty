@@ -1,2 +1,7 @@
-180
- ww ww ww ww
+130
+    
+    
+  ww
+www0
+1w w
+w w_

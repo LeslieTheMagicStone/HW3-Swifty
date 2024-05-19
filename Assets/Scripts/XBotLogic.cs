@@ -7,51 +7,44 @@ public class XBotLogic : MonoBehaviour
     [SerializeField] Transform laserSpawnPoint;
 
     Animator animator;
-    PlayerLogic player;
 
-    bool canFire => laserTimer <= 0;
-    float laserTimer;
     bool isBusy;
-    const float LASER_INTERVAL = 1f;
-    const float LASER_DURATION = 1f;
-    const float ROTATION_SPEED = 10f;
+    float laserDuration => RhythmManager.Instance.Tnote;
+    const float LASER_CAST_TIME = 0.9f;
+    const float LASER_LOCK_TIME = 1.1f;
 
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        player = FindObjectOfType<PlayerLogic>();
-        laserTimer = 0.0f;
         isBusy = false;
     }
 
-    private void Update()
+    public void Laser(float delay)
     {
-        if (isBusy) return;
-
-        if (laserTimer > 0) laserTimer -= Time.deltaTime;
-
-        if (canFire)
-        {
-            animator.SetTrigger("Laser");
-            laserTimer = LASER_INTERVAL;
-        }
-
-        // if (player == null) return;
-        // var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * ROTATION_SPEED);
+        Invoke(nameof(Laser), delay - LASER_CAST_TIME);
     }
 
-    public void Fire()
+    private void Laser()
     {
+        if (isBusy) { print("Busy"); return; }
+        StartCoroutine(LaserCoroutine());
+    }
+
+    private IEnumerator LaserCoroutine()
+    {
+        animator.SetTrigger("Laser");
+        yield return new WaitForSeconds(LASER_CAST_TIME);
         LaserLogic laser = Instantiate(laserPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
-        laser.Init(LASER_DURATION);
+        laser.Init(laserDuration);
         laser.transform.SetParent(transform);
+        yield return new WaitForSeconds(LASER_LOCK_TIME - LASER_CAST_TIME);
+        WaitForLaserComplete();
     }
 
-    public void WaitForLaserComplete()
+    private void WaitForLaserComplete()
     {
-        StartCoroutine(StopAnimatorCoroutine(LASER_DURATION));
+        StartCoroutine(StopAnimatorCoroutine(laserDuration));
     }
 
     private IEnumerator StopAnimatorCoroutine(float time)

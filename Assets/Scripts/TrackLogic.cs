@@ -45,7 +45,7 @@ public class TrackLogic : MonoBehaviour
 
     public void SpawnNote(float delay)
     {
-        Invoke(nameof(SpawnNote), delay);
+        Invoke(nameof(SpawnNote), delay - noteDelay);
     }
 
     public void SpawnNote()

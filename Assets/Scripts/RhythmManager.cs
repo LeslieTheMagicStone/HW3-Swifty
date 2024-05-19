@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEngine;
-using DG.Tweening;
 using TMPro;
 
 public enum HitType { Perfect, Good, Bad };
@@ -23,6 +22,7 @@ public class RhythmManager : MonoBehaviour
     [SerializeField] TrackLogic[] tracks;
     [SerializeField] TMP_Text hitStatusText;
     [SerializeField] TMP_Text comboText;
+    [SerializeField] XBotLogic[] enemies;
     private HitType lastHitType;
 
     private void Awake()
@@ -73,6 +73,11 @@ public class RhythmManager : MonoBehaviour
             for (int i = 0; i < mapstring.Length; i++)
             {
                 if (mapstring[i] == ' ') continue;
+                if (char.IsDigit(mapstring[i]))
+                {
+                    enemies[mapstring[i] - '0'].Laser(i * Tnote);
+                    continue;
+                }
                 switch (mapstring[i])
                 {
                     case 'w': tracks[0].SpawnNote(i * Tnote); break;

@@ -65,8 +65,10 @@ public class RhythmManager : MonoBehaviour
         string filePath = Path.Combine(Application.dataPath, "Maps", mapName + ".mp");
         if (File.Exists(filePath))
         {
-            string[] line = File.ReadAllLines(filePath);
-            string mapstring = line[0];
+            string[] lines = File.ReadAllLines(filePath);
+            string[] configs = lines[0].Split(' ');
+            _bpm = int.Parse(configs[0]);
+            string mapstring = lines[1];
             for (int i = 0; i < mapstring.Length; i++)
             {
                 if (mapstring[i] == ' ') continue;

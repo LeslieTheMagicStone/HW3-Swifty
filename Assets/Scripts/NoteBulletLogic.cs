@@ -50,6 +50,7 @@ public class NoteBulletLogic : MonoBehaviour
         transform.parent = null;
         side = Side.Player;
         speed *= 2;
+        GetComponent<TrailRenderer>().enabled = true;
     }
 
     private void Explode()

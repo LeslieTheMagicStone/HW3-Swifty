@@ -46,6 +46,7 @@ public class XBotLogic : MonoBehaviour
     {
         LaserLogic laser = Instantiate(laserPrefab, laserSpawnPoint.position, transform.rotation);
         laser.Init(LASER_DURATION);
+        laser.transform.SetParent(transform);
     }
 
     public void WaitForLaserComplete()

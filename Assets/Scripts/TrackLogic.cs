@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TrackLogic : MonoBehaviour
 {
     [SerializeField] NoteBulletLogic notePrefab;
+    [SerializeField] MeshRenderer axisRenderer;
     Queue<NoteBulletLogic> notesOnTrack;
     PlayerLogic player;
     Vector3 offset;
+    Vector3 targetPos;
+    Sequence blinkSequence;
     const float SPAWN_DISTANCE = 4f;
     const float NOTE_VELOCITY = 4f;
 
@@ -19,14 +23,23 @@ public class TrackLogic : MonoBehaviour
     {
         player = FindObjectOfType<PlayerLogic>();
         offset = transform.position - player.transform.position;
+        targetPos = transform.position;
+        Blink();
     }
 
     private void Update()
     {
-        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
+        while (notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         CheckMiss();
         if (player == null) return;
-        transform.position = player.transform.position + offset;
+        targetPos.x = player.transform.position.x + offset.x;
+        targetPos.z = player.transform.position.z + offset.z;
+        transform.position = targetPos;
+    }
+
+    private void OnDestroy()
+    {
+        blinkSequence?.Kill();
     }
 
     public void SpawnNote(float delay)
@@ -45,7 +58,7 @@ public class TrackLogic : MonoBehaviour
 
     public void DestroyNote()
     {
-        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
+        while (notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Dequeue();
         Destroy(note.gameObject);
@@ -53,7 +66,7 @@ public class TrackLogic : MonoBehaviour
 
     private void ReverseNote(HitType hitType)
     {
-        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
+        while (notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Dequeue();
         note.Reverse(hitType);
@@ -61,7 +74,8 @@ public class TrackLogic : MonoBehaviour
 
     public void DetectNote()
     {
-        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
+        Blink();
+        while (notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Peek();
         Vector3 distance = note.transform.position - transform.position;
@@ -86,7 +100,7 @@ public class TrackLogic : MonoBehaviour
 
     void CheckMiss()
     {
-        while(notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
+        while (notesOnTrack.Count > 0 && notesOnTrack.Peek() == null) notesOnTrack.Dequeue();
         if (notesOnTrack.Count == 0) return;
         NoteBulletLogic note = notesOnTrack.Peek();
         Vector3 distance = note.transform.position - transform.position;
@@ -97,5 +111,13 @@ public class TrackLogic : MonoBehaviour
             RhythmManager.Instance.Miss();
             DestroyNote();
         }
+    }
+
+    void Blink()
+    {
+        blinkSequence?.Kill();
+        blinkSequence = DOTween.Sequence();
+        blinkSequence.Append(axisRenderer.material.DOColor(Color.white, "_EmissionColor", 0.1f));
+        blinkSequence.Append(axisRenderer.material.DOColor(Color.black, "_EmissionColor", 0.5f));
     }
 }

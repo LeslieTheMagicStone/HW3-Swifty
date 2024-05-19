@@ -2520,9 +2520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cdeadb4d21a23f44a1b9ed132b87f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xVoxelCount: 20
-  yVoxelCount: 1
-  zVoxelCount: 20
+  xVoxelCount: 30
+  yVoxelCount: 2
+  zVoxelCount: 30
   groundParent: {fileID: 1399014168}
   voxelPrefab: {fileID: 2650122123046507411, guid: 73ae1176b568f1e41888899d9d7e1a94,
     type: 3}

@@ -83,7 +83,6 @@ public class RhythmManager : MonoBehaviour
                 }
                 else if (mapstring[i] == 't')
                 {
-                    print(i);
                     int startIndex = mapstring.IndexOf('{', i);
                     int endIndex = mapstring.IndexOf('}', startIndex);
                     string durationStr = mapstring.Substring(startIndex + 1, endIndex - startIndex - 1);

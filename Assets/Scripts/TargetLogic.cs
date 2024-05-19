@@ -16,7 +16,6 @@ public class TargetLogic : MonoBehaviour
 
     private void Start()
     {
-        print(emergeTime);
         var healthBar = GetComponentInChildren<HealthBar>();
         healthBar.gameObject.SetActive(false);
         sequence = DOTween.Sequence();

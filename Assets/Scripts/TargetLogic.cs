@@ -3,13 +3,20 @@ using DG.Tweening;
 
 public class TargetLogic : MonoBehaviour
 {
-    [SerializeField] float emergeTime;
-    [SerializeField] float duration;
+    float emergeTime;
+    float duration;
     Sequence sequence;
     const float ANIM_TIME = 0.2f;
 
+    public void Init(float emergeTime, float duration)
+    {
+        this.emergeTime = emergeTime;
+        this.duration = duration;
+    }
+
     private void Start()
     {
+        print(emergeTime);
         var healthBar = GetComponentInChildren<HealthBar>();
         healthBar.gameObject.SetActive(false);
         sequence = DOTween.Sequence();

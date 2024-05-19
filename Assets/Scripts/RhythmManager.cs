@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public enum HitType { Perfect, Good, Bad };
 public class RhythmManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class RhythmManager : MonoBehaviour
     [SerializeField] TMP_Text hitStatusText;
     [SerializeField] TMP_Text comboText;
     [SerializeField] XBotLogic[] enemies;
+    [SerializeField] TargetLogic[] targets;
+    private int targetIndex = 0;
     private HitType lastHitType;
 
     private void Awake()
@@ -70,21 +73,34 @@ public class RhythmManager : MonoBehaviour
             string[] configs = lines[0].Split(' ');
             _bpm = int.Parse(configs[0]);
             string mapstring = string.Concat(lines[1..]);
+            float t = 0f;
+            bool appending = true;
             for (int i = 0; i < mapstring.Length; i++)
             {
-                if (mapstring[i] == ' ') continue;
                 if (char.IsDigit(mapstring[i]))
                 {
                     enemies[mapstring[i] - '0'].Laser(i * Tnote);
-                    continue;
                 }
-                switch (mapstring[i])
+                else if (mapstring[i] == 't')
                 {
-                    case 'w': tracks[0].SpawnNote(i * Tnote); break;
-                    case 'a': tracks[1].SpawnNote(i * Tnote); break;
-                    // case 's': tracks[2].SpawnNote(i * Tnote); break;
-                    case 'd': tracks[3].SpawnNote(i * Tnote); break;
+                    print(i);
+                    int startIndex = mapstring.IndexOf('{', i);
+                    int endIndex = mapstring.IndexOf('}', startIndex);
+                    string durationStr = mapstring.Substring(startIndex + 1, endIndex - startIndex - 1);
+                    targets[targetIndex++].Init(t, float.Parse(durationStr) * Tnote);
+                    i = endIndex;
                 }
+                else switch (mapstring[i])
+                {
+                    case 'w': tracks[0].SpawnNote(t); break;
+                    case 'a': tracks[1].SpawnNote(t); break;
+                    // case 's': tracks[2].SpawnNote(t); break;
+                    case 'd': tracks[3].SpawnNote(t); break;
+                    case '(': appending = false; break;
+                    case ')': appending = true; break;
+                }
+
+                if (appending) { t += Tnote; }
             }
         }
         else

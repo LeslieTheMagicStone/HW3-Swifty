@@ -29,12 +29,13 @@ public class RhythmicObject : MonoBehaviour
         switch (rhythmAnimType)
         {
             case RhythmAnimType.Scale:
+                Vector3 origScale = transform.localScale;
                 sequence.AppendInterval(T / 5);
-                sequence.Join(transform.DOScaleX(1.1f, T / 5));
-                sequence.Join(transform.DOScaleY(0.9f, T / 5));
+                sequence.Join(transform.DOScaleX(origScale.x * 1.1f, T / 5));
+                sequence.Join(transform.DOScaleY(origScale.y * 0.9f, T / 5));
                 sequence.AppendInterval(4 * T / 5);
-                sequence.Join(transform.DOScaleX(1.0f, 4 * T / 5));
-                sequence.Join(transform.DOScaleY(1.0f, 4 * T / 5));
+                sequence.Join(transform.DOScaleX(origScale.x * 1.0f, 4 * T / 5));
+                sequence.Join(transform.DOScaleY(origScale.y * 1.0f, 4 * T / 5));
                 break;
             case RhythmAnimType.Blink:
                 TryGetComponent(out MeshRenderer meshRenderer);

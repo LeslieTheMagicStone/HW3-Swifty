@@ -75,11 +75,12 @@ public class RhythmManager : MonoBehaviour
             string mapstring = string.Concat(lines[1..]);
             float t = 0f;
             bool appending = true;
+            float dTFactor = 1f;
             for (int i = 0; i < mapstring.Length; i++)
             {
                 if (char.IsDigit(mapstring[i]))
                 {
-                    enemies[mapstring[i] - '0'].Laser(i * Tnote);
+                    enemies[mapstring[i] - '0'].Laser(t);
                 }
                 else if (mapstring[i] == 't')
                 {
@@ -89,17 +90,27 @@ public class RhythmManager : MonoBehaviour
                     targets[targetIndex++].Init(t, float.Parse(durationStr) * Tnote);
                     i = endIndex;
                 }
-                else switch (mapstring[i])
+                else if (mapstring[i] == '*')
                 {
-                    case 'w': tracks[0].SpawnNote(t); break;
-                    case 'a': tracks[1].SpawnNote(t); break;
-                    // case 's': tracks[2].SpawnNote(t); break;
-                    case 'd': tracks[3].SpawnNote(t); break;
-                    case '(': appending = false; break;
-                    case ')': appending = true; break;
+                    int startIndex = mapstring.IndexOf('{', i);
+                    int endIndex = mapstring.IndexOf('}', startIndex);
+                    string dTFactorStr = mapstring.Substring(startIndex + 1, endIndex - startIndex - 1);
+                    dTFactor = float.Parse(dTFactorStr);
+                    i = endIndex;
+                    print(dTFactor);
+                    continue;
                 }
+                else switch (mapstring[i])
+                    {
+                        case 'w': tracks[0].SpawnNote(t); break;
+                        case 'a': tracks[1].SpawnNote(t); break;
+                        // case 's': tracks[2].SpawnNote(t); break;
+                        case 'd': tracks[3].SpawnNote(t); break;
+                        case '(': appending = false; break;
+                        case ')': appending = true; break;
+                    }
 
-                if (appending) { t += Tnote; }
+                if (appending) { t += Tnote * dTFactor; }
             }
         }
         else

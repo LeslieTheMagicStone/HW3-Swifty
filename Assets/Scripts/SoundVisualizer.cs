@@ -53,7 +53,7 @@ public class SoundVisualizer : MonoBehaviour
                 float d = t * 6 - step;
                 float value = Mathf.Lerp(bandSource.bufferedRelativeBands[step], bandSource.bufferedRelativeBands[step + 1], d);
                 var scale = renderer.transform.localScale;
-                scale.y = value * 5f;
+                scale.y = value * 5f + 1f;
                 renderer.transform.localScale = scale;
                 renderer.transform.position = originalPositions[i];
             }

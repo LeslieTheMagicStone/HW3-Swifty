@@ -63,6 +63,7 @@ public class NoteBulletLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (side != Side.Player) return;
         if (other.TryGetComponent(out Damageable damageable))
         {
             if (damageable.side == side) return;

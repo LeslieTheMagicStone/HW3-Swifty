@@ -49,6 +49,7 @@ public class NoteBulletLogic : MonoBehaviour
         reverseParticle.transform.parent = null;
         transform.parent = null;
         side = Side.Player;
+        speed *= 2;
     }
 
     private void Explode()

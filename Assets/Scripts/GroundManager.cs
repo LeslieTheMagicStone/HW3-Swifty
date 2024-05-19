@@ -9,7 +9,7 @@ public class GroundManager : MonoBehaviour
     [SerializeField] GameObject voxelPrefab;
     const float GROUND_UPPER_POS_Y = 0f;
 
-    private void Start()
+    private void Awake()
     {
         InitGround();
     }

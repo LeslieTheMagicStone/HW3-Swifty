@@ -6,7 +6,6 @@ public class PlayerLogic : MonoBehaviour
     public Vector3 targetPos => _targetPos;
     [SerializeField] Transform detectionRayOrigin;
     Animator animator;
-    CharacterController characterController;
     float horizontalInput, verticalInput;
     float horizontalInputRaw, verticalInputRaw;
     float moveCD => RhythmManager.Instance.Tnote * 0.8f;
@@ -16,8 +15,6 @@ public class PlayerLogic : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        characterController = GetComponent<CharacterController>();
-        characterController.enabled = false;
 
         _targetPos = transform.position;
         moveTimer = 0f;

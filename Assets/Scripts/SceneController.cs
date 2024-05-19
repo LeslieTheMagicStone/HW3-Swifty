@@ -23,4 +23,10 @@ public class SceneController : MonoBehaviour
             SceneManager.LoadScene(sceneIndex + 1);
         else Debug.LogWarning("Scene index out of range.");
     }
+
+    public void ReloadScene()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneIndex);
+    }
 }

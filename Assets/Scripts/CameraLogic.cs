@@ -15,6 +15,7 @@ public class CameraLogic : MonoBehaviour
 
     private void Update()
     {
+        if (player == null) return;
         Vector3 targetPos = player.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, SMOOTH_FACTOR * Time.deltaTime);
     }

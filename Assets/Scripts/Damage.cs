@@ -6,7 +6,8 @@ public class Damage : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Damageable damageable))
+        if (other.attachedRigidbody == null) return;
+        if (other.attachedRigidbody.TryGetComponent(out Damageable damageable))
         {
             if (damageable.side != side)
             {

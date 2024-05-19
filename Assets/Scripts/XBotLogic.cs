@@ -37,7 +37,7 @@ public class XBotLogic : MonoBehaviour
         yield return new WaitForSeconds(LASER_CAST_TIME);
         LaserLogic laser = Instantiate(laserPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
         laser.Init(laserDuration);
-        laser.transform.SetParent(transform);
+        // laser.transform.SetParent(transform);
         yield return new WaitForSeconds(LASER_LOCK_TIME - LASER_CAST_TIME);
         WaitForLaserComplete();
     }

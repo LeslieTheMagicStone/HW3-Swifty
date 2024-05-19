@@ -97,7 +97,6 @@ public class RhythmManager : MonoBehaviour
                     string dTFactorStr = mapstring.Substring(startIndex + 1, endIndex - startIndex - 1);
                     dTFactor = float.Parse(dTFactorStr);
                     i = endIndex;
-                    print(dTFactor);
                     continue;
                 }
                 else switch (mapstring[i])

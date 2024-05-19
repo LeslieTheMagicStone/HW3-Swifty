@@ -5060,6 +5060,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track_3
       objectReference: {fileID: 0}
+    - target: {fileID: 355074791787436562, guid: e37c12de50a3d78419e9868bdde7c58f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1820067320529866900, guid: e37c12de50a3d78419e9868bdde7c58f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6142,6 +6147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Track_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 355074791787436562, guid: e37c12de50a3d78419e9868bdde7c58f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1820067320529866900, guid: e37c12de50a3d78419e9868bdde7c58f,
         type: 3}

@@ -37,14 +37,14 @@ public class XBotLogic : MonoBehaviour
             laserTimer = LASER_INTERVAL;
         }
 
-        if (player == null) return;
-        var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * ROTATION_SPEED);
+        // if (player == null) return;
+        // var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+        // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * ROTATION_SPEED);
     }
 
     public void Fire()
     {
-        LaserLogic laser = Instantiate(laserPrefab, laserSpawnPoint.position, transform.rotation);
+        LaserLogic laser = Instantiate(laserPrefab, laserSpawnPoint.position, laserSpawnPoint.rotation);
         laser.Init(LASER_DURATION);
         laser.transform.SetParent(transform);
     }

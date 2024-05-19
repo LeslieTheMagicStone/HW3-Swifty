@@ -189,7 +189,7 @@ AnimatorStateMachine:
     m_Position: {x: 120, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6989153324640467772}
-    m_Position: {x: -170, y: 160, z: 0}
+    m_Position: {x: -170, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7818844306559581153}
     m_Position: {x: -160, y: 300, z: 0}
@@ -376,7 +376,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Uppercut
+  m_Name: Punch
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -391,7 +391,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 420f192f53f3e504dac3fa0f02bd27ed,
+  m_Motion: {fileID: -203655887218126122, guid: 4150b1c7fa882d747a4e7c89039bde08,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

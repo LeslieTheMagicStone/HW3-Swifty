@@ -40,7 +40,7 @@ public class PlayerLogic : MonoBehaviour
 
         animator.SetBool("OnLeft", Input.GetKeyDown(KeyCode.LeftArrow));
         animator.SetBool("OnRight", Input.GetKeyDown(KeyCode.RightArrow));
-        animator.SetBool("OnDown", Input.GetKeyDown(KeyCode.DownArrow));
+        // animator.SetBool("OnDown", Input.GetKeyDown(KeyCode.DownArrow));
         animator.SetBool("OnUp", Input.GetKeyDown(KeyCode.UpArrow));
 
         Vector3 direction = Vector3.zero;

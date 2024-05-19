@@ -38,8 +38,8 @@ public class RhythmManager : MonoBehaviour
             tracks[0].DetectNote();
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             tracks[1].DetectNote();
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            tracks[2].DetectNote();
+        // if (Input.GetKeyDown(KeyCode.DownArrow))
+        //     tracks[2].DetectNote();
         if (Input.GetKeyDown(KeyCode.RightArrow))
             tracks[3].DetectNote();
     }
@@ -76,7 +76,7 @@ public class RhythmManager : MonoBehaviour
                 {
                     case 'w': tracks[0].SpawnNote(i * 0.5f); break;
                     case 'a': tracks[1].SpawnNote(i * 0.5f); break;
-                    case 's': tracks[2].SpawnNote(i * 0.5f); break;
+                    // case 's': tracks[2].SpawnNote(i * 0.5f); break;
                     case 'd': tracks[3].SpawnNote(i * 0.5f); break;
                 }
             }

@@ -13,4 +13,12 @@
         <Key>Quit</Key>
         <Key>润了</Key>
     </Entry>
+    <Entry>
+      <Key>Options</Key>
+      <Key>设置</Key>
+    </Entry>
+    <Entry>
+      <Key>Language</Key>
+      <Key>语言</Key>
+    </Entry>
 </Localization>

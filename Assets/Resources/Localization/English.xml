@@ -12,4 +12,12 @@
     <Key>Quit</Key>
     <Key>...or Quit</Key>
   </Entry>
+  <Entry>
+    <Key>Options</Key>
+    <Key>Options</Key>
+  </Entry>
+  <Entry>
+    <Key>Language</Key>
+    <Key>Language</Key>
+  </Entry>
 </Localization>

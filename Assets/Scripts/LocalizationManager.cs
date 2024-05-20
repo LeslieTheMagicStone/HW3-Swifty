@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using UnityEngine.Events;
 
 public enum Language
 {
@@ -13,6 +14,7 @@ public class LocalizationManager : MonoBehaviour
 {
     static LocalizationManager instance;
     public static LocalizationManager Instance => instance;
+    public UnityEvent OnLanguageChanged;
     Dictionary<Language, TextAsset> localizationFiles = new();
     Dictionary<string, string> localizationData = new();
     [SerializeField] private Language language;
@@ -53,6 +55,7 @@ public class LocalizationManager : MonoBehaviour
 
     void SetupLocalizationLanguage()
     {
+        localizationData = new();
         TextAsset textAsset;
 
         if (localizationFiles.ContainsKey(language))
@@ -100,5 +103,19 @@ public class LocalizationManager : MonoBehaviour
         }
 
         return "Error Loc Missing: " + key;
+    }
+
+    public void ChangeLanguage(string targetLanguage)
+    {
+        foreach (Language language in Enum.GetValues(typeof(Language)))
+        {
+            if (language.ToString() == targetLanguage)
+            {
+                this.language = language;
+                SetupLocalizationLanguage();
+                OnLanguageChanged.Invoke();
+                break;
+            }
+        }
     }
 }

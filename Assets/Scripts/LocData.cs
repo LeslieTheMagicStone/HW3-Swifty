@@ -7,7 +7,9 @@ public class LocData : MonoBehaviour
 
     private void Start()
     {
-        if (TryGetComponent(out TextMeshProUGUI tmp))
-            tmp.text = LocalizationManager.Instance.GetLocString(locKey);
+        if (!TryGetComponent(out TextMeshProUGUI tmp)) return;
+        tmp.text = LocalizationManager.Instance.GetLocString(locKey);
+        LocalizationManager.Instance.OnLanguageChanged.AddListener(
+            () => tmp.text = LocalizationManager.Instance.GetLocString(locKey));
     }
 }

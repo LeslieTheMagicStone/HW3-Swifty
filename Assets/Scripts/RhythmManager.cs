@@ -54,14 +54,14 @@ public class RhythmManager : MonoBehaviour
         totalHit++;
         lastHitType = hitType;
         hitStatusText.text = hitType.ToString() + "!!";
-        comboText.text = "Combo: " + combo.ToString();
+        comboText.text = combo.ToString();
     }
 
     public void Miss()
     {
         combo = 0;
         hitStatusText.text = "";
-        comboText.text = "Combo: " + combo.ToString();
+        comboText.text = combo.ToString();
     }
 
     private void PrepareMap()

@@ -7,6 +7,8 @@ public class TargetLogic : MonoBehaviour
     float duration;
     Sequence sequence;
     const float ANIM_TIME = 0.2f;
+    const int HIT_SCORE = 1140;
+    const int DESTROY_SCORE = 5140;
 
     public void Init(float emergeTime, float duration)
     {
@@ -16,6 +18,10 @@ public class TargetLogic : MonoBehaviour
 
     private void Start()
     {
+        var damageable = GetComponent<Damageable>();
+        damageable.OnHurt.AddListener(() => RhythmManager.Instance.score += HIT_SCORE);
+        damageable.OnDeath.AddListener(() => RhythmManager.Instance.score += DESTROY_SCORE);
+
         var healthBar = GetComponentInChildren<HealthBar>();
         healthBar.gameObject.SetActive(false);
         sequence = DOTween.Sequence();

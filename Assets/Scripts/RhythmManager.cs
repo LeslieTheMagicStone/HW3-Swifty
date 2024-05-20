@@ -8,6 +8,8 @@ public class RhythmManager : MonoBehaviour
 {
     public static RhythmManager Instance => instance;
     private static RhythmManager instance;
+
+    [HideInInspector] public int score;
     [HideInInspector] public int combo;
     [HideInInspector] public int totalHit;
 
@@ -23,6 +25,7 @@ public class RhythmManager : MonoBehaviour
     [SerializeField] TrackLogic[] tracks;
     [SerializeField] TMP_Text hitStatusText;
     [SerializeField] TMP_Text comboText;
+    [SerializeField] TMP_Text scoreText;
     [SerializeField] XBotLogic[] enemies;
     [SerializeField] TargetLogic[] targets;
     private int targetIndex = 0;
@@ -34,6 +37,8 @@ public class RhythmManager : MonoBehaviour
         else Destroy(gameObject);
 
         PrepareMap();
+
+        score = 0;
     }
 
     private void Update()
@@ -55,6 +60,14 @@ public class RhythmManager : MonoBehaviour
         lastHitType = hitType;
         hitStatusText.text = hitType.ToString() + "!!";
         comboText.text = combo.ToString();
+
+        switch (hitType)
+        {
+            case HitType.Perfect: score += 1145; break;
+            case HitType.Good: score += 577; break;
+            case HitType.Bad: score += 77; break;
+        }
+        scoreText.text = score.ToString().PadLeft(6, '0');
     }
 
     public void Miss()

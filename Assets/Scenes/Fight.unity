@@ -4754,6 +4754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e75fbd19201f940a3dca3024dc338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   combo: 0
   totalHit: 0
   mapName: debug
@@ -4764,6 +4765,7 @@ MonoBehaviour:
   - {fileID: 1577368670}
   hitStatusText: {fileID: 1669643485}
   comboText: {fileID: 1361128306}
+  scoreText: {fileID: 1498629117}
   enemies:
   - {fileID: 1390715991}
   - {fileID: 36941072}
@@ -8972,6 +8974,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnHurt:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
     m_PersistentCalls:
       m_Calls: []
   _maxHealth: 1

@@ -8,6 +8,7 @@ public class Damageable : MonoBehaviour
     public int maxHealth => _maxHealth;
     public int health => _health;
     public UnityEvent OnHurt;
+    public UnityEvent OnDeath;
     [SerializeField] int _maxHealth;
     [SerializeField] Side _side;
     [SerializeField] GameObject deathParticles;
@@ -48,6 +49,7 @@ public class Damageable : MonoBehaviour
                 deathParticles.transform.SetParent(null);
             }
             transform.DOKill();
+            OnDeath.Invoke();
             Destroy(gameObject);
             return;
         }

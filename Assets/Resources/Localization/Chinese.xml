@@ -37,4 +37,8 @@
     <Key>Main Menu</Key>
     <Key>主菜单</Key>
   </Entry>
+  <Entry>
+    <Key>Combo</Key>
+    <Key>连击：</Key>
+  </Entry>
 </Localization>

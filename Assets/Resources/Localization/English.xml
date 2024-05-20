@@ -36,4 +36,8 @@
     <Key>Main Menu</Key>
     <Key>Main Menu</Key>
   </Entry>
+  <Entry>
+    <Key>Combo</Key>
+    <Key>Combo:</Key>
+  </Entry>
 </Localization>

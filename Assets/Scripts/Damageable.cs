@@ -24,11 +24,6 @@ public class Damageable : MonoBehaviour
         _health = _maxHealth;
     }
 
-    private void Start()
-    {
-        origPos = transform.position;
-    }
-
     private void Update()
     {
         if (isInvincible) invincibleTimer -= Time.deltaTime;
@@ -48,12 +43,12 @@ public class Damageable : MonoBehaviour
                 deathParticles.SetActive(true);
                 deathParticles.transform.SetParent(null);
             }
-            transform.DOKill();
             OnDeath.Invoke();
             Destroy(gameObject);
             return;
         }
         if (shakeTween != null) DOTween.Kill(shakeTween);
+        origPos = transform.position;
         shakeTween = transform.DOShakePosition(0.3f, 0.2f, 30).OnComplete(() => transform.position = origPos);
     }
 

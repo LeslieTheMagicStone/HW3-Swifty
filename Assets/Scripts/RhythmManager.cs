@@ -67,7 +67,7 @@ public class RhythmManager : MonoBehaviour
             case HitType.Good: score += 577; break;
             case HitType.Bad: score += 77; break;
         }
-        scoreText.text = score.ToString().PadLeft(6, '0');
+        scoreText.text = score.ToString().PadLeft(8, '0');
     }
 
     public void Miss()

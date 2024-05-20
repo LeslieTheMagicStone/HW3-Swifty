@@ -6,6 +6,8 @@ public class SceneController : MonoBehaviour
     public static SceneController Instance => instance;
     private static SceneController instance;
 
+    const int MAIN_MENU_INDEX = 1;
+
     private void Awake()
     {
         if (instance == null)
@@ -28,5 +30,10 @@ public class SceneController : MonoBehaviour
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene(MAIN_MENU_INDEX);
     }
 }

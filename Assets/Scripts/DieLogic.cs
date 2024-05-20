@@ -7,6 +7,8 @@ public class DieLogic : MonoBehaviour
     AudioLowPassFilter filter;
     private IEnumerator Start()
     {
+        GameManager.Instance.ChangeGameState(GameState.GameOver);
+
         Time.timeScale = 0.5f;
         DOTween.timeScale = 0.5f;
 

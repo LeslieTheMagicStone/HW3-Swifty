@@ -1,6 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum GameState
+{
+    Playing,
+    Paused,
+    GameOver
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance => instance;
@@ -8,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     public bool debugMode => _debugMode;
     [SerializeField] bool _debugMode;
+    public GameState gameState => _gameState;
+    private GameState _gameState;
+    public UnityEvent OnGameStateChanged;
 
     private void Awake()
     {
@@ -15,11 +25,15 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private void Start() {
+    private void Start()
+    {
+        _gameState = GameState.Playing;
     }
 
-    private void Update()
+    public void ChangeGameState(GameState targetState)
     {
-
+        if (_gameState == targetState) return;
+        _gameState = targetState;
+        OnGameStateChanged.Invoke();
     }
 }

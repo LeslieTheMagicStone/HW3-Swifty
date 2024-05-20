@@ -29,7 +29,11 @@ public class LocalizationManager : MonoBehaviour
 
     void CreateSingleton()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(gameObject);
     }
 
@@ -55,7 +59,8 @@ public class LocalizationManager : MonoBehaviour
 
     void SetupLocalizationLanguage()
     {
-        localizationData = new();
+        localizationData.Clear();
+
         TextAsset textAsset;
 
         if (localizationFiles.ContainsKey(language))

@@ -20,4 +20,20 @@
     <Key>Language</Key>
     <Key>Language</Key>
   </Entry>
+  <Entry>
+    <Key>Paused</Key>
+    <Key>Paused</Key>
+  </Entry>
+  <Entry>
+    <Key>Resume</Key>
+    <Key>Resume</Key>
+  </Entry>
+  <Entry>
+    <Key>Restart</Key>
+    <Key>Restart</Key>
+  </Entry>
+  <Entry>
+    <Key>Main Menu</Key>
+    <Key>Main Menu</Key>
+  </Entry>
 </Localization>

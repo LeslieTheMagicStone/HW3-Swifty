@@ -30,6 +30,8 @@ public class SoundVisualizer : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.gameState == GameState.Paused) return;
+
         for (int i = 0; i < groundRenderers.Length; i++)
         {
             var renderer = groundRenderers[i];
